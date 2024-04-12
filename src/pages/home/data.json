@@ -1,0 +1,52 @@
+{
+	"calorias": {
+		"descripcion": "Este alimento proporciona 120 kcal por porción, lo cual es moderado en términos de energía.",
+		"recomendacion": "Dado que la persona busca bajar de peso, es importante controlar la ingesta de calorías. Esta cantidad podría ajustarse dependiendo de la ingesta total diaria.",
+		"calificacion": 6
+	},
+	"proteinas": {
+		"descripcion": "Contiene 10 g de proteína por porción, lo cual es positivo para ayudar a mantener la saciedad y conservar la masa muscular.",
+		"recomendacion": "Es importante consumir alimentos ricos en proteína para favorecer la pérdida de peso. Esta cantidad es adecuada.",
+		"calificacion": 8
+	},
+	"grasas": {
+		"descripcion": "Presenta 7 g de grasa total, de los cuales 4,5 g son grasas saturadas. Además, contiene 60 kcal de energía proveniente de la grasa.",
+		"recomendacion": "Dado que la persona tiene hipertensión, se debe limitar la ingesta de grasas saturadas. Esta cantidad es moderada por porción.",
+		"calificacion": 2
+	},
+	"colesterol": {
+		"descripcion": "Aporta 30 mg de colesterol por porción, lo cual representa el 10% del valor diario recomendado.",
+		"recomendacion": "La cantidad de colesterol en este alimento no es excesiva, pero se debe considerar al incluirlo en la dieta.",
+		"calificacion": 7
+	},
+	"sodio": {
+		"descripcion": "Contiene 90 mg de sodio por porción, que equivale al 4% del valor diario recomendado.",
+		"recomendacion": "La cantidad de sodio en este alimento es baja y es adecuada para la persona con hipertensión.",
+		"calificacion": 9
+	},
+	"carbohidratos": {
+		"descripcion": "Proporciona 5 g de carbohidratos por porción, siendo 2% del valor diario.",
+		"recomendacion": "La cantidad de carbohidratos es baja, lo cual puede ser positivo para el objetivo de bajar de peso.",
+		"calificacion": 8
+	},
+	"azucares": {
+		"descripcion": "Contiene 5 g de azúcares por porción, lo cual es moderado.",
+		"recomendacion": "Dado que la persona no desea consumir endulzantes artificiales, es importante tener en cuenta el contenido de azúcar natural.",
+		"calificacion": 6
+	},
+	"fibra": {
+		"descripcion": "No aporta fibra dietaria.",
+		"recomendacion": "Sería beneficioso complementar esta bebida con alimentos ricos en fibra para mejorar la digestión.",
+		"calificacion": 4
+	},
+	"vitaminas": {
+		"descripcion": "Es una fuente moderada de calcio y vitamina E, y baja en vitamina A y C.",
+		"recomendacion": "Se podría complementar con otras fuentes de vitaminas para garantizar un aporte equilibrado.",
+		"calificacion": 7
+	},
+	"alimento_general": {
+		"consumiria": "No",
+		"resumen": "Esta bebida tiene un contenido moderado en calorías y proteínas, pero es alta en grasas saturadas. Aunque el sodio es bajo, la falta de fibra y las limitadas vitaminas hacen que no sea la mejor opción para la persona con hipertensión y el objetivo de bajar de peso.",
+		"calificacion_general": 7
+	}
+}

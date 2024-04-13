@@ -3,11 +3,11 @@ import OpenAI from "openai";
 import "./index.css";
 import MyAudioVisualaizer from "./pages/visualaizers/audio";
 import Modal from "react-modal";
-import canvasImage from "../src/images/canvas.png"; // Import your image
+// import canvasImage from "../src/images/canvas.png"; // Import your image
 import Swal from "sweetalert2";
 
 const openai = new OpenAI({
-	apiKey: "process.env.REACT_APP_GPT_KEY",
+	apiKey: process.env.REACT_APP_GPT_KEY,
 	dangerouslyAllowBrowser: true,
 });
 
@@ -147,22 +147,35 @@ function App() {
 				messages: [
 					{
 						content: `
-						Quiero hacer un juego de quien quiere ser millonario, 
-						y necesito un json que contenga 6 keys: question, optionA, optionB, optionC, optionD, answer.
-						En la key: question, el value será una pregunta, la pregunta que se le hará al usuario.
-						En las keys: optionA, optionB, optionC, optionD, tendran las opciones, una de ellas y solo una será la correcta.
-						En la key: answer, irá uno de los cuatro valores: A, B, C, D. Que indicará cual de las 4 opciones es la correcta.
-						Tambien quiero que retornes una pregunta diferente a las que ya has formulado antes, aqui esta el historial
-						de lo que ya se ha tenido y lo cual no se quiere que lo vuelvas a retornar: ${questionsHistory}.
-						Ejemplo de lo que quiero que retornes:
-						{
-							"question": "¿Cuando se descubrió america?",
-							"optionA": "A. En 1944",
-							"optionB": "B. En 1942",
-							"optionC": "C. En 1943",
-							"optionD": "D. En 1300",
-							"answer": "A"
-						}
+						Debes hacer un análisis de la información nutricional de este producto. 
+
+			Analizarás cada uno de estos apartados, darás una descripción, una recomendación y una calificación, y cada apartado lo harás en formato JSON: calorías, proteínas, grasas, colesterol, sodio, carbohidratos, azúcares, fibra y vitaminas. 
+			Si no hay información sobre algún apartado, no lo incluyas en el JSON. 
+			Ten en cuenta que la información nutricional puede contener errores, puede estar en inglés u otro idioma, pero la respuesta debe ser en español.
+
+			Además, darás una calificación al alimento en general, dirás si lo consumirías (Lo puedes consumir regularmente, Consúmelo con moderación, No lo consumas) y harás una descripción sobre el alimento, en formato JSON.
+			Las calificaciones serán de 1 a 10.
+			Todas las recomendaciones y calificaciones deben ser personalizadas en base a las características de la persona.
+			
+			La estructura del JSON sería así:
+			
+			{
+				"calorías": {
+					"descripcion": "",
+					"recomendacion": "",
+					"calificacion": 6
+				},
+				"proteínas": {
+					"descripcion": "",
+					"recomendacion": "",
+					"calificacion": 8
+				},
+				"alimento_general": {
+					"consumiria": "",
+					"resumen": "",
+					"calificacion_general": 6
+				}
+			}
 					`,
 						role: "user",
 					},
@@ -189,24 +202,41 @@ function App() {
 
 		instructions = {
 			content: `
-				Esto es un juego de quien quiere ser millonario.
-				Quiero que leas el texto al final de este texto que te voy a dar en donde esta: la pregunta que 
-				se le hizo al usario, cuatro opciones, 3 de las cuales están mal, y 1 la cual es correcta. Quiero que 
-				retornes un mensaje con la palabra  Felicitaciones si la respuesta del usuario significa la opcion 
-				correcta en la informacion que te voy a dar pero de lo contrario, retorna un mensaje con la palabra Incorrecto.
-				Por supuesto, el mensaje si la respuesta es correcta no puede tener la palabra Incorrecto
-				y el mensaje si la respuesta es negativa no puede tener la palabra Felicitaciones. 
-				Finalmente, en la key llamada question esta la pregunta que se le hizo al usuario,
-				en las key optionA, optionB, optionC, optionD estan las cuatro opcines dadas al usuario (A;B;C;D respectivamente)
-				y por ultimo, la key llamada answer contiene la respuesta de la pregunta. 
-				Tu trabajo tambien es determinar si la respuesta del usuario se refiere a la respuesta correcta.
-				Es importante que tu respuesta debe de ser similar a la respuesta que daria un presentador de un show, 
-				mas especificamente deberias responder como si estuvieras presentando quien quiere ser millonario.
-				No uses la palabra ganar o sus derivados como ganado, o ganaste.
-				Acontinuacion esta la informacion.
-				Aqui esta toda la info que necesitas:
-				${JSON.stringify(machineQuestionsAndOptions)}.	
-				Esta es la respuesta del usuario: ${userResponse}.		`,
+			Debes hacer un análisis de la información nutricional de este producto. 
+
+			Analizarás cada uno de estos apartados, darás una descripción, una recomendación y una calificación, y cada apartado lo harás en formato JSON: calorías, proteínas, grasas, colesterol, sodio, carbohidratos, azúcares, fibra y vitaminas. 
+			Si no hay información sobre algún apartado, no lo incluyas en el JSON. 
+			Ten en cuenta que la información nutricional puede contener errores, puede estar en inglés u otro idioma, pero la respuesta debe ser en español.
+
+			Además, darás una calificación al alimento en general, dirás si lo consumirías (Lo puedes consumir regularmente, Consúmelo con moderación, No lo consumas) y harás una descripción sobre el alimento, en formato JSON.
+			Las calificaciones serán de 1 a 10.
+			Todas las recomendaciones y calificaciones deben ser personalizadas en base a las características de la persona.
+			
+			La estructura del JSON sería así:
+			
+			{
+				"calorías": {
+					"descripcion": "",
+					"recomendacion": "",
+					"calificacion": 6
+				},
+				"proteínas": {
+					"descripcion": "",
+					"recomendacion": "",
+					"calificacion": 8
+				},				
+				"vitaminas": {
+					"descripcion": "",
+					"recomendacion": "",
+					"calificacion": 2
+				},
+				"alimento_general": {
+					"consumiria": "",
+					"resumen": "",
+					"calificacion_general": 6
+				}
+			}
+					`,
 			role: "assistant",
 		};
 
@@ -290,19 +320,19 @@ function App() {
 						updateScoreIfNeeded(score);
 					}
 					// Introduce a delay of 3 seconds
-					setTimeout(() => {
-						Swal.fire({
-							title: "Perdiste",
-							text: "Terminaste el juego con: ",
-							icon: "error",
-							customClass: {
-								container: "font-text",
-							},
-							confirmButtonText: "Go to leaderboard ->",
-						}).then((result) => {
-							window.location.href = "/leaderboard";
-						});
-					}, 3000);
+					// setTimeout(() => {
+					// 	Swal.fire({
+					// 		title: "Perdiste",
+					// 		text: "Terminaste el juego con: ",
+					// 		icon: "error",
+					// 		customClass: {
+					// 			container: "font-text",
+					// 		},
+					// 		confirmButtonText: "Go to leaderboard ->",
+					// 	}).then((result) => {
+					// 		window.location.href = "/leaderboard";
+					// 	});
+					// }, 3000);
 				}
 			});
 	};
@@ -312,7 +342,7 @@ function App() {
 			<div className="items-center  bg-white w-full h-full flex flex-col">
 				<div className="gap-4 bg-white-200 p-0 pb-8 flex-grow overflow-auto xl:w-[800px]">
 					<div className="w-full mt-4 h-auto bg-white justify-center  flex">
-						<img src={canvasImage} alt="Canvas image" className="w-auto mt-4 h-auto p-8" />
+						<img alt="Canvas image" className="w-auto mt-4 h-auto p-8" />
 					</div>
 					{machineQuestionsAndOptions && (
 						<div>

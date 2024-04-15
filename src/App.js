@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import OpenAI from "openai";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import MyAudioVisualaizer from "./pages/visualaizers/audio";
 import Modal from "react-modal";
@@ -8,6 +9,7 @@ import Swal from "sweetalert2";
 import Button from "./components/button";
 
 function App() {
+	const navigate = useNavigate(); // Hook de navegación
 
 	return (
 		<div className="relative h-screen overflow-hidden">
@@ -19,7 +21,7 @@ function App() {
 				<p className="z-10 w-[60rem] text-center mb-14 text-lg font-bold pt-[-2rem] text-white " >
 					¡Bienvenido a NutriScan! Obten toda la información necesaria sobre el alimento que deseas consumir, solo respondes algunas preguntas sobre tu salud, objetivos alimenticios y estilo de vida y luego, simplemente subes una foto de la tabla nutricional del alimento que deseas consumir. Basándonos en tus respuestas y la información proporcionada, te ofrecemos un análisis personalizado sobre la idoneidad del alimento para ti. ¡Comienza a tomar decisiones alimenticias más informadas y saludables con NutriScan!
 				</p>
-				<Button texto={"Empezar"} onClick={console.log("jeje")} />
+				<Button texto={"Empezar"} onClick={()=>navigate("/questions")} />
 			</div>
 		</div>
 	);

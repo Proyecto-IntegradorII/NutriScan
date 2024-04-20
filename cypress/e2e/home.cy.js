@@ -8,7 +8,7 @@ describe("Prueba de texto de bienvenida", () => {
 describe("Verificación del botón 'Empezar'", () => {
 	it("Verifica que el botón 'Empezar' existe", () => {
 		// Visita la página que contiene el botón "Empezar"
-		cy.visit("/");
+		cy.visit("http://localhost:3000/");
 
 		// Verifica que el botón "Empezar" existe en el DOM
 		cy.get("button").contains("Empezar").should("exist");

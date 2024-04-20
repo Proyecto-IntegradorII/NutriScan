@@ -4,3 +4,13 @@ describe("Prueba de texto de bienvenida", () => {
 		cy.contains("¡Bienvenido a NutriScan!").should("exist");
 	});
 });
+
+describe("Verificación del botón 'Empezar'", () => {
+	it("Verifica que el botón 'Empezar' existe", () => {
+		// Visita la página que contiene el botón "Empezar"
+		cy.visit("/");
+
+		// Verifica que el botón "Empezar" existe en el DOM
+		cy.get("button").contains("Empezar").should("exist");
+	});
+});

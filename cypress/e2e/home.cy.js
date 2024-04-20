@@ -14,3 +14,16 @@ describe("Verificación del botón 'Empezar'", () => {
 		cy.get("button").contains("Empezar").should("exist");
 	});
 });
+
+describe("Pruebas de navegación", () => {
+	it('Debería navegar a /questions al hacer clic en el botón "Empezar"', () => {
+		// Cargar la aplicación
+		cy.visit("/");
+
+		// Hacer clic en el botón "Empezar"
+		cy.contains("Empezar").click();
+
+		// Verificar que la URL cambie a /questions
+		cy.url().should("include", "/questions");
+	});
+});

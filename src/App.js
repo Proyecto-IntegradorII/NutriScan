@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import MyAudioVisualaizer from "./pages/visualaizers/audio";
 import Modal from "react-modal";
-import canvasImage from "../src/images/canvas.png"; // Import your image
+// import canvasImage from "../src/images/canvas.png"; // Import your image
 import Swal from "sweetalert2";
 import Button from "./components/button";
 

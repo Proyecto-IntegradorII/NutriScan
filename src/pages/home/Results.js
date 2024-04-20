@@ -31,7 +31,7 @@ function Results() {
 
 			{/* DESCRIPCION DE LOS ITEMS DEL ALIMENTO */}
 			<div className="flex flex-column w-auto justify-center items-center pb-24">
-				<div className="grid gap-4 md:grid-cols-2 flex-column w-auto justify-center items-center px-4">
+				<div className="grid gap-5 md:grid-cols-2 flex-column w-auto justify-center items-center px-4">
 					{/* NUTRITION INFO CARDS */}
 					{Object.entries(data).map(([key, value]) => {
 						if (key !== "alimento_general") {

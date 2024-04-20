@@ -7,7 +7,7 @@ const NutritionInfoCard = ({ titulo, puntaje, descripcion, porcentaje }) => {
 		} else if (puntaje <= 7) {
 			return "bg-yellow-500";
 		} else {
-			return "bg-green-500";
+			return "bg-lime-600";
 		}
 	};
 

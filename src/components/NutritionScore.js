@@ -7,7 +7,7 @@ const NutritionScore = ({ score }) => {
 		} else if (score <= 7) {
 			return "text-yellow-500";
 		} else {
-			return "text-green-500";
+			return "text-lime-600";
 		}
 	};
 

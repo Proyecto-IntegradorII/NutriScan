@@ -13,6 +13,7 @@ import Login from "./pages/home/Login";
 import Leaderboard from "./pages/home/LeaderBoard";
 import MyAudioVisualaizer from "./pages/visualaizers/audio";
 import Results from "./pages/home/Results";
+import Preguntas from "./pages/home/Questions";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,7 @@ root.render(
 					<Route path="/leaderboard" element={<Leaderboard />} />
 					<Route path="/audio" element={<MyAudioVisualaizer />} />
 					<Route path="/results" element={<Results />} />
+					<Route path="/questions" element={<Preguntas/>}/>
 				</Route>
 			</Routes>
 		</ThemeProvider>

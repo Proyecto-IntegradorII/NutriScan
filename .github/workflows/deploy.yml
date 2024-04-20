@@ -1,16 +1,46 @@
-name: Vercel Production Deployment
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+name: CI/CD Workflow
+
 on:
+  pull_request:
+    branches:
+      - development
   push:
     branches:
       - main
+
 jobs:
-  Deploy-Production:
+  # Workflow for merging to testing branch
+  merge-to-testing:
+    name: Merge to Testing
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.ref == 'refs/heads/development'
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Merge to Testing branch
+        run: git merge --no-ff --no-commit development && git push origin testing
+
+  # Workflow for running tests
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: merge-to-testing
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+
+  # Workflow for deploying to production with Vercel
+  deploy-to-vercel-production:
+    name: Vercel Production Deployment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information

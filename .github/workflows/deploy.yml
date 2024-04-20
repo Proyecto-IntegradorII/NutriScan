@@ -1,17 +1,37 @@
-name: Cypress Tests
-on: [push]
+name: Cypress Tests on Pull Request
+
+on: push
+
 jobs:
-  Cypress-Test:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout GitCode
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Run Cypress Test
-        uses: cypress-io/github-action@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          command: npx cypress run
-          browser: chrome
+          node-version: "14" # Especifica la versión de Node.js que necesitas
+
+      - name: Cache Node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start # Comando para iniciar tu servidor, si es necesario
+          wait-on: "http://localhost:3000" # Ajusta la URL según donde corra tu aplicación
+          wait-on-timeout: 300 # Timeout en segundos para esperar que tu aplicación esté lista
+
 # name: CI/CD Workflow
 
 # on:

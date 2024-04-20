@@ -18,7 +18,7 @@ describe("Verificación del botón 'Empezar'", () => {
 describe("Pruebas de navegación", () => {
 	it('Debería navegar a /questions al hacer clic en el botón "Empezar"', () => {
 		// Cargar la aplicación
-		cy.visit("/");
+		cy.visit("http://localhost:3000/");
 
 		// Hacer clic en el botón "Empezar"
 		cy.contains("Empezar").click();

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import anteriorIcon from '../../images/anterior.png';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Button from '../../components/button';
+
 
 const Preguntas = () => {
+  const navigate = useNavigate(); // Hook de navegación
   const [preguntas, setPreguntas] = useState([
     {
       id: 1,
@@ -49,6 +54,7 @@ const Preguntas = () => {
 
   const guardarRespuestas = () => {
     localStorage.setItem('respuestas', JSON.stringify(preguntas));
+    navigate("/image");
   };
 
   return (
@@ -83,12 +89,7 @@ const Preguntas = () => {
         </button>
       </div>
       {indicePregunta === preguntas.length - 1 && (
-        <button
-          className="bg-lime-900 text-white font-bold py-2 px-4 rounded mt-4"
-          onClick={guardarRespuestas}
-        >
-          Guardar
-        </button>
+        <Button texto={"Guardar"} onClick={guardarRespuestas} />
       )}
     </div>
   );

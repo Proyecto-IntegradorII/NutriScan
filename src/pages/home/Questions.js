@@ -55,6 +55,7 @@ const Preguntas = () => {
   const guardarRespuestas = () => {
     localStorage.setItem('respuestas', JSON.stringify(preguntas));
     navigate("/image");
+    
   };
 
   return (

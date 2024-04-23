@@ -12,7 +12,7 @@ function App() {
 	const navigate = useNavigate(); // Hook de navegación
 
 	return (
-		<div className="relative h-screen overflow-hidden">
+		<div className="relative h-screen overflow-hidden font-text">
 			<video
 				autoPlay
 				muted
